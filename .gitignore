@@ -1,0 +1,33 @@
+# Session memory (Claude /remember)
+.remember/
+
+# Build outputs
+Debug/
+Release/
+build/
+**/build/
+TouchGFX/build/
+TouchGFX/simulator/build/
+
+# Compiler / linker intermediates
+*.o
+*.d
+*.su
+*.lst
+*.list
+*.map
+*.elf
+*.bin
+*.hex
+
+# IDE user-specific files
+*.uvguix.*
+*.bak
+EWARM/**/Obj/
+EWARM/**/List/
+EWARM/**/Exe/
+EWARM/settings/
+
+# OS files
+.DS_Store
+Thumbs.db

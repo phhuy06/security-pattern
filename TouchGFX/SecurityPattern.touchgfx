@@ -1,0 +1,407 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Screen1",
+        "OverrideDefaultBufferSize": true,
+        "CanvasBufferSize": 3600,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Width": 240,
+            "Height": 320,
+            "LockPosition": true,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_240x320_spotlights.png"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle1",
+            "X": 35,
+            "Y": 75,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle5",
+            "X": 105,
+            "Y": 145,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle6",
+            "X": 175,
+            "Y": 145,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle9",
+            "X": 175,
+            "Y": 215,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle4",
+            "X": 35,
+            "Y": 145,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle7",
+            "X": 35,
+            "Y": 215,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle8",
+            "X": 105,
+            "Y": 215,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle2",
+            "X": 105,
+            "Y": 75,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "Circle",
+            "Name": "circle3",
+            "X": 175,
+            "Y": 75,
+            "Width": 30,
+            "Height": 30,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "CenterX": 15.0,
+            "CenterY": 15.0,
+            "Radius": 15.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "txtStatus",
+            "X": 113,
+            "Y": 26,
+            "Width": 15,
+            "Height": 20,
+            "TextId": "__SingleUse_1NQZ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 30
+            }
+          },
+          {
+            "Type": "Line",
+            "Name": "line1",
+            "Width": 105,
+            "Height": 46,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line2",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line3",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line4",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line5",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line6",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line7",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          },
+          {
+            "Type": "Line",
+            "Name": "line8",
+            "Width": 100,
+            "Height": 50,
+            "Visible": false,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "StartX": 5.0,
+            "StartY": 5.0,
+            "EndX": 95.0,
+            "EndY": 45.0,
+            "LineWidth": 10.0,
+            "LineEndingStyle": "Round"
+          }
+        ],
+        "Interactions": []
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "SecurityPattern",
+    "Resolution": {
+      "Width": 240,
+      "Height": 320
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "Screen1",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 240,
+        "Height": 320
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommandOverride": "make -f ../gcc/Makefile -j8",
+    "FlashTargetCommandOverride": "make -f ../gcc/Makefile flash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Portrait",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F429/439",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../STM32F429I_DISCO_REV_D01.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": [
+      "CWRVector",
+      "VectorFonts"
+    ]
+  },
+  "Version": "4.26.1",
+  "CreatedBy": "4.26.1"
+}
