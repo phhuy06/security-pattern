@@ -109,7 +109,7 @@ Screen1ViewBase::Screen1ViewBase()
     txtStatus.setTypedText(touchgfx::TypedText(T___SINGLEUSE_1NQZ));
     add(txtStatus);
 
-    line1.setPosition(0, 1, 105, 50);
+    line1.setPosition(0, 0, 105, 46);
     line1Painter.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     line1.setPainter(line1Painter);
     line1.setStart(5, 5);
