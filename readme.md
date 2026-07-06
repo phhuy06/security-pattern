@@ -66,7 +66,7 @@ Screen1Presenter  -> cầu nối Model <-> View
 Screen1View   -> máy trạng thái + cảm ứng + hit-test 9 điểm + vẽ 8 đường nối + điều hướng sang Screen2
 Screen2Presenter  -> cầu nối Model <-> Screen2View
         ^
-Screen2View   -> hiển thị thông báo "MỞ KHÓA THÀNH CÔNG" + timer đếm ngầm ~3s tự động trượt về Screen1
+Screen2View   -> hiển thị thông báo thành công + timer đếm ngầm ~3s tự động trượt về Screen1
 ```
 
 ### 4.2. Đánh số 9 điểm (lưới 3x3)
@@ -86,7 +86,7 @@ Khi kéo ngón đi qua giữa hai điểm thẳng hàng cách nhau 2 ô (vd 0->2
   |   \--(vẽ sai)--> báo đỏ "Sai, thu lai" --(~1.5s)--> LOCKED
   |
   \--(giữ BOOT 3s)--> REGISTER_FIRST --(>=4 điểm)--> REGISTER_CONFIRM
-                                                       |--(khớp)--> lưu Flash -> "Da luu" -> LOCKED
+                                                       |--(khớp)--> lưu Flash -> SUCCESS (Screen 2): Hiện thông báo thành công -> LOCKED
                                                        \--(lệch)--> "Khong khop" -> REGISTER_FIRST
 ```
 Lần đầu chưa có pattern: màn khóa hiện **"Giu BOOT 3s"** và chặn mở khóa cho tới khi đăng ký.
@@ -100,7 +100,7 @@ Lần đầu chưa có pattern: màn khóa hiện **"Giu BOOT 3s"** và chặn m
 | `TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp` | Chuyển sự kiện nút và truy cập Model cho View |
 | `TouchGFX/gui/src/screen1_screen/Screen1View.cpp` | Cảm ứng, hit-test, vẽ đường nối, đổi màu, thông báo, timer, gọi lệnh trượt sang Screen2 |\
 | `TouchGFX/gui/src/screen2_screen/Screen2Presenter.cpp` | Cầu nối Model cho màn hình thông báo Screen2View|
-| `TouchGFX/gui/src/screen2_screen/Screen2View.cpp` | Hiển thị giao diện mở khóa thành công, xử lý timer đếm ngầm ~3s và trượt về Screen1
+| `TouchGFX/gui/src/screen2_screen/Screen2View.cpp` | Hiển thị thông báo thành công, xử lý timer đếm ngầm ~3s và trượt về Screen1
 | `TouchGFX/assets/texts/texts.xml` | Khai báo dải ký tự cho thông báo (wildcard) |
 
 ### 4.5. Đặc tả hàm chính
@@ -126,6 +126,7 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 ```
 ```cpp
 /* Screen2View - Màn hình thông báo mở khóa thành công */
+void Screen2View::setupScreen();                          // Thông báo thành công cho từng phần
 void Screen2View::handleTickEvent();                      // Đếm ngầm 180 ticks (~3s) rồi gọi application().gotoScreen1...()
 ```
 ---
