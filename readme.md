@@ -143,17 +143,54 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 ## 7. KẾT QUẢ
 
 ### Video sản phẩm
-- 🎥 _(TODO: dán link video demo)_
+ https://drive.google.com/file/d/16HgoOF3xDkpLilph2BrY_AG3ib3VFgvu/view?usp=sharing
 
 ### Ảnh chụp sản phẩm
 <p align="center">
-  <!-- TODO: chèn ảnh các trạng thái -->
-  <img src="docs/images/locked.jpg"   width="240" alt="Khóa">
-  <img src="docs/images/drawing.jpg"  width="240" alt="Đang vẽ"><br/>
-  <em>Hình 2. Trạng thái khóa và đang vẽ pattern</em>
+  <img src="docs/images/firstlog.jpg" width="240" alt="Khởi động lần đầu">
 </p>
 <p align="center">
-  <img src="docs/images/unlocked.jpg" width="240" alt="Mở khóa">
-  <img src="docs/images/register.jpg" width="240" alt="Đăng ký"><br/>
-  <em>Hình 3. Mở khóa thành công và đăng ký pattern mới</em>
+  <em>Hình 2. Khởi động lần đầu</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangnhap/Lock.jpg" width="240" alt="Màn hình khóa">
+</p>
+<p align="center">
+  <em>Hình 3. Màn hình khóa</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangnhap/success.jpg" width="240" alt="Đăng nhập thành công">
+</p>
+<p align="center">
+  <em>Hình 4. Đăng nhập thành công</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangnhap/Incorrectlogin.jpg" width="240" alt="Đăng nhập sai">
+</p>
+<p align="center">
+  <em>Hình 5. Đăng nhập sai</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangky/register.jpg" width="240" alt="Bắt đầu đăng ký pattern">
+</p>
+<p align="center">
+  <em>Hình 6. Bắt đầu đăng ký pattern</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangky/confirm.jpg" width="240" alt="Xác nhận pattern đăng ký">
+</p>
+<p align="center">
+  <em>Hình 7. Xác nhận pattern đăng ký</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangky/success.jpg" width="240" alt="Đăng ký pattern thành công">
+</p>
+<p align="center">
+  <em>Hình 8. Đăng ký pattern thành công</em>
+</p>
+<p align="center">
+  <img src="docs/images/dangky/fail.jpg" width="240" alt="Xác nhận pattern không đúng">
+</p>
+<p align="center">
+  <em>Hình 9. Xác nhận pattern không đúng</em>
 </p>
