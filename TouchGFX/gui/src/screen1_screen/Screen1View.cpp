@@ -216,9 +216,10 @@ void Screen1View::finishSequence()
         {
             colorWholePattern(cSuccess());
             setStatus("Mo khoa OK");
+            presenter->setNotifyType(Model::NOTIFY_UNLOCK_OK);
             state = ST_UNLOCKED;
-            pending = P_LOCK;
-            autoTimer = SUCCESS_TICKS;
+            pending = P_GOTO_SCREEN2;
+            autoTimer = 60;
         }
         else
         {
@@ -295,6 +296,9 @@ void Screen1View::runPending()
     case P_SAVE:
         doSave();
         break;
+    case P_GOTO_SCREEN2:
+            application().gotoScreen2ScreenNoTransition();
+            break;
     default:
         break;
     }
@@ -306,9 +310,10 @@ void Screen1View::doSave()
     {
         colorWholePattern(cSuccess());
         setStatus("Da luu");
+        presenter->setNotifyType(Model::NOTIFY_REG_OK);
         state = ST_LOCKED;
-        pending = P_LOCK;
-        autoTimer = SUCCESS_TICKS;
+        pending = P_GOTO_SCREEN2;
+        autoTimer = 60;
     }
     else
     {

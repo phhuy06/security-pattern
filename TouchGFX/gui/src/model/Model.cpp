@@ -13,6 +13,7 @@ extern "C"
 
 Model::Model()
     : modelListener(0),
+	  currentNotify(NOTIFY_NONE),
       storedLen(0),
       patternSet(false),
       buttonWasDown(false),

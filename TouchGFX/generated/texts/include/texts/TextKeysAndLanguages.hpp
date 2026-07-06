@@ -12,6 +12,9 @@ enum LANGUAGES
 
 enum TEXTS
 {
+    T___SINGLEUSE_C87D,
+    T_NOTI,
+    T_UNLOCK,
     T___SINGLEUSE_1NQZ,
     NUMBER_OF_TEXT_KEYS
 };

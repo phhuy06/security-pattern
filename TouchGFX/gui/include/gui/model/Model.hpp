@@ -16,7 +16,13 @@ public:
     }
 
     void tick();
-
+    enum NotifyType {
+            NOTIFY_NONE,
+            NOTIFY_UNLOCK_OK,       // Đăng nhập / Mở khóa thành công
+            NOTIFY_REG_OK           // Đăng ký Pattern mới thành công
+        };
+    void setNotifyType(NotifyType type) { currentNotify = type; }
+        NotifyType getNotifyType() const    { return currentNotify; }
     /* Trạng thái pattern đã lưu trong Flash. */
     bool isPatternSet() const
     {
@@ -31,6 +37,7 @@ public:
 
 protected:
     ModelListener* modelListener;
+    NotifyType currentNotify;
 
 private:
     /* Pattern đã lưu (bản RAM). */

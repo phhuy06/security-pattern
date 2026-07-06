@@ -32,7 +32,9 @@ public:
     bool patternSet() const { return model->isPatternSet(); }
     bool verifyPattern(const uint8_t* dots, uint8_t len) const { return model->verifyPattern(dots, len); }
     bool savePattern(const uint8_t* dots, uint8_t len) { return model->savePattern(dots, len); }
-
+    // Cầu nối gửi và nhận loại thông báo từ Model
+    void setNotifyType(Model::NotifyType type) { model->setNotifyType(type); }
+        Model::NotifyType getNotifyType() const    { return model->getNotifyType(); }
     virtual ~Screen1Presenter() {}
 
 private:

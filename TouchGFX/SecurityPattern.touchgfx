@@ -181,8 +181,8 @@
             "Name": "txtStatus",
             "X": 113,
             "Y": 26,
-            "Width": 15,
-            "Height": 20,
+            "Width": 24,
+            "Height": 25,
             "TextId": "__SingleUse_1NQZ",
             "TextRotation": "0",
             "Color": {
@@ -341,7 +341,67 @@
             "LineEndingStyle": "Round"
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerNone"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen2"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Screen2",
+        "OverrideDefaultBufferSize": true,
+        "CanvasBufferSize": 3600,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Width": 240,
+            "Height": 320,
+            "LockPosition": true,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_240x320_spotlights.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "txtNotification",
+            "X": 79,
+            "Y": 148,
+            "Width": 83,
+            "Height": 25,
+            "TextId": "__SingleUse_C87D",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 40
+            }
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerNone"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen1"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

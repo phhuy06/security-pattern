@@ -63,7 +63,10 @@ Model (C++)   -> nạp pattern lúc khởi động; poll nút PA0 mỗi tick; ve
         ^ ModelListener::notifyRegisterRequested()
 Screen1Presenter  -> cầu nối Model <-> View
         ^
-Screen1View   -> máy trạng thái + cảm ứng + hit-test 9 điểm + vẽ 8 đường nối + thông báo
+Screen1View   -> máy trạng thái + cảm ứng + hit-test 9 điểm + vẽ 8 đường nối + điều hướng sang Screen2
+Screen2Presenter  -> cầu nối Model <-> Screen2View
+        ^
+Screen2View   -> hiển thị thông báo "MỞ KHÓA THÀNH CÔNG" + timer đếm ngầm ~3s tự động trượt về Screen1
 ```
 
 ### 4.2. Đánh số 9 điểm (lưới 3x3)
@@ -79,7 +82,7 @@ Khi kéo ngón đi qua giữa hai điểm thẳng hàng cách nhau 2 ô (vd 0->2
 ### 4.3. Máy trạng thái
 
 ```
-LOCKED --(vẽ đúng)----------------> UNLOCKED --(~3s)--> LOCKED
+[Screen1: LOCKED] --(vẽ đúng)----------------> [Trượt sang Screen2: UNLOCKED](~3s)--> LOCKED
   |   \--(vẽ sai)--> báo đỏ "Sai, thu lai" --(~1.5s)--> LOCKED
   |
   \--(giữ BOOT 3s)--> REGISTER_FIRST --(>=4 điểm)--> REGISTER_CONFIRM
@@ -95,7 +98,9 @@ Lần đầu chưa có pattern: màn khóa hiện **"Giu BOOT 3s"** và chặn m
 | `Core/Src/pattern_storage.c` | Đọc/ghi/xóa pattern trong Flash (magic + CRC16) |
 | `TouchGFX/gui/src/model/Model.cpp` | Nạp pattern khi khởi động, poll nút PA0 (giữ 3s), verify/save |
 | `TouchGFX/gui/src/screen1_screen/Screen1Presenter.cpp` | Chuyển sự kiện nút và truy cập Model cho View |
-| `TouchGFX/gui/src/screen1_screen/Screen1View.cpp` | Cảm ứng, hit-test, vẽ đường nối, đổi màu, thông báo, timer |
+| `TouchGFX/gui/src/screen1_screen/Screen1View.cpp` | Cảm ứng, hit-test, vẽ đường nối, đổi màu, thông báo, timer, gọi lệnh trượt sang Screen2 |\
+| `TouchGFX/gui/src/screen2_screen/Screen2Presenter.cpp` | Cầu nối Model cho màn hình thông báo Screen2View|
+| `TouchGFX/gui/src/screen2_screen/Screen2View.cpp` | Hiển thị giao diện mở khóa thành công, xử lý timer đếm ngầm ~3s và trượt về Screen1
 | `TouchGFX/assets/texts/texts.xml` | Khai báo dải ký tự cho thông báo (wildcard) |
 
 ### 4.5. Đặc tả hàm chính
@@ -119,7 +124,10 @@ void Screen1View::processPoint(int16_t x, int16_t y);     // bắt điểm khi k
 void Screen1View::finishSequence();                       // đánh giá pattern khi nhả tay
 void Screen1View::startRegistration();                    // vào chế độ đăng ký (gọi từ Presenter)
 ```
-
+```cpp
+/* Screen2View - Màn hình thông báo mở khóa thành công */
+void Screen2View::handleTickEvent();                      // Đếm ngầm 180 ticks (~3s) rồi gọi application().gotoScreen1...()
+```
 ---
 
 ## 5. HƯỚNG DẪN SỬ DỤNG
@@ -127,7 +135,7 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 1. **Lần đầu:** màn hình hiện *"Giu BOOT 3s"*. Giữ nút **BOOT** ~3 giây để vào đăng ký.
 2. **Đăng ký:** vẽ pattern (>= 4 điểm), màn hiện *"Ve lai de xac nhan"*, vẽ lại đúng như vậy,
    *"Dang luu..."* (màn hình **đứng ~1s** do xóa Flash), rồi *"Da luu"* và về khóa.
-3. **Mở khóa:** vẽ đúng pattern thì hiện *"Mo khoa OK"* (xanh) và tự khóa lại sau ~3s. Sai thì *"Sai, thu lai"* (đỏ).
+3. **Mở khóa:** vẽ đúng pattern thì hiện *"Mo khoa OK"* (xanh) giao diện tự động trượt sang Screen2 với thông báo lớn "Đã mở khóa!". Sau 3 giây đếm ngầm, hệ thống tự động trượt trả về Màn hình 1 (Screen1) ở trạng thái khóa. Sai thì *"Sai, thu lai"* (đỏ).
 
 ---
 

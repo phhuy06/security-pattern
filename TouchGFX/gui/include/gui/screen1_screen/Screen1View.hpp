@@ -35,7 +35,8 @@ protected:
         P_LOCK,                /* quay về trạng thái khóa                   */
         P_REG_AGAIN,           /* bắt đầu lại đăng ký từ bước vẽ            */
         P_CONFIRM_CLEAR,       /* xóa nét, giữ bước xác nhận                 */
-        P_SAVE                 /* ghi pattern vào Flash (blocking)          */
+        P_SAVE,                /* ghi pattern vào Flash (blocking)          */
+		P_GOTO_SCREEN2         /* chuyen sang screen 2                      */
     };
 
     /* Con trỏ tới widget của lớp base (gán trong setupScreen). */
