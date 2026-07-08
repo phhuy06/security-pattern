@@ -143,7 +143,7 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 ## 7. KẾT QUẢ
 
 ### Video sản phẩm
- https://drive.google.com/file/d/16HgoOF3xDkpLilph2BrY_AG3ib3VFgvu/view?usp=sharing
+▶️ [Xem video demo](docs/videos/demo.mp4) (49 giây)
 
 ### Ảnh chụp sản phẩm
 <p align="center">
