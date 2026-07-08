@@ -143,7 +143,10 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 ## 7. KẾT QUẢ
 
 ### Video sản phẩm
-▶️ [Xem video demo](docs/videos/demo.mp4) (49 giây)
+
+https://github.com/user-attachments/assets/4bf59cbb-cdb2-441e-9d51-886055dc695e
+
+Bản gốc chất lượng cao: [docs/videos/demo.mp4](docs/videos/demo.mp4)
 
 ### Ảnh chụp sản phẩm
 <p align="center">
