@@ -146,8 +146,6 @@ void Screen1View::startRegistration();                    // vào chế độ đ
 
 https://github.com/user-attachments/assets/4bf59cbb-cdb2-441e-9d51-886055dc695e
 
-Bản gốc chất lượng cao: [docs/videos/demo.mp4](docs/videos/demo.mp4)
-
 ### Ảnh chụp sản phẩm
 <p align="center">
   <img src="docs/images/firstlog.jpg" width="240" alt="Khởi động lần đầu">
