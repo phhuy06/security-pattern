@@ -19,7 +19,7 @@ Module này xử lý toàn bộ logic bắt cảm ứng, vẽ đường nối pa
 
 ---
 
-## 🎯 Cấu trúc dữ liệu
+## Cấu trúc dữ liệu
 
 ### Hằng số quan trọng
 
@@ -65,7 +65,7 @@ inline colortype cIdle()    { return Color::getColorFromRGB(255, 255, 255); } //
 
 ---
 
-## 🔄 Máy trạng thái
+## Máy trạng thái
 
 ### Enum AppState
 
@@ -115,7 +115,7 @@ ST_UNLOCKED
 
 ---
 
-## 👆 Xử lý sự kiện cảm ứng
+## Xử lý sự kiện cảm ứng
 
 ### handleClickEvent
 
@@ -190,7 +190,7 @@ void Screen1View::handleTickEvent()
 
 ---
 
-## 🎯 Hit-test điểm
+## Hit-test điểm
 
 ### hitDot() — Kiểm tra ngón tay có trúng điểm nào không
 
@@ -338,7 +338,7 @@ mid = (2/2) * 3 + (2/2) = 1*3 + 1 = 4
 
 ---
 
-## 🖌️ Logic vẽ Pattern
+##  Logic vẽ Pattern
 
 ### beginSequence() — Bắt đầu vẽ
 
@@ -518,7 +518,7 @@ void Screen1View::finishSequence()
 
 ---
 
-## 🎨 Hiển thị & Màu sắc
+## Hiển thị & Màu sắc
 
 ### clearDrawing() — Xóa tất cả nét vẽ
 
@@ -704,7 +704,7 @@ void Screen1View::resetToLocked()
 
 ---
 
-## 📊 Bảng tóm tắt các thành viên class
+## Bảng tóm tắt các thành viên class
 
 ### Biến trạng thái
 
@@ -742,7 +742,7 @@ void Screen1View::resetToLocked()
 
 ---
 
-## 🧪 Kịch bản sử dụng
+## Kịch bản sử dụng
 
 ### Kịch bản 1: Mở khóa thành công
 
@@ -838,79 +838,7 @@ void Screen1View::resetToLocked()
 ```
 
 ---
-
-## 🎓 Câu hỏi thường gặp (FAQ)
-
-### Q1: Tại sao dùng bình phương khoảng cách thay vì căn bậc hai?
-
-**A:** Để kiểm tra điểm `(x, y)` có nằm trong bán kính `R` hay không:
-- **Cách thông thường**: `√(dx² + dy²) ≤ R` → phải tính căn (chậm)
-- **Cách tối ưu**: `dx² + dy² ≤ R²` → chỉ cần nhân (nhanh hơn)
-
-Kết quả hai cách hoàn toàn giống nhau, nhưng cách 2 nhanh hơn rất nhiều trên vi điều khiển.
-
-### Q2: Máy trạng thái là gì?
-
-**A:** Máy trạng thái hữu hạn (Finite State Machine - FSM) là mô hình có:
-- **Tập hữu hạn trạng thái**: ST_LOCKED, ST_UNLOCKED, ST_REGISTER_FIRST, ST_REGISTER_CONFIRM
-- **Trạng thái hiện tại**: chỉ ở 1 trong 4 trạng thái
-- **Chuyển trạng thái**: dựa vào sự kiện (vẽ đúng, vẽ sai, timeout, ...)
-
-Ví dụ: Đèn giao thông (xanh → vàng → đỏ → xanh...)
-
-### Q3: Tại sao phải có hành động trễ (Pending)?
-
-**A:** Một số hành động cần:
-- **Hiển thị thông báo trước**: "Dang luu..." phải hiện ~33ms (2 tick) để người dùng thấy
-- **Blocking operation**: lưu Flash mất vài chục ms, không nên chạy ngay trong `finishSequence()`
-- **UX tốt hơn**: người dùng thấy được phản hồi (màu xanh/đỏ + text) trước khi chuyển màn hình
-
-### Q4: Sao có 9 điểm nhưng chỉ 8 line?
-
-**A:** Line nối giữa 2 điểm:
-- 1 điểm → không có line
-- 2 điểm → 1 line
-- 3 điểm → 2 line
-- ...
-- 9 điểm → 8 line
-
-Công thức: `số line = số điểm - 1`
-
-
-### Q5: Vì sao cần `invalidate()`?
-
-**A:** TouchGFX dùng cơ chế vẽ lại theo vùng (dirty region):
-- `widget->invalidate()`: đánh dấu vùng widget cần vẽ lại
-- Nếu không gọi → widget thay đổi nhưng màn hình không cập nhật
-- Giống `repaint()` trong Java Swing hoặc `update()` trong game loop
-
-### Q6: Tại sao có cả `inSeq[]` và `seq[]`?
-
-**A:** Hai mảng có vai trò khác nhau:
-- **`seq[]`**: lưu thứ tự điểm (để kiểm tra pattern)
-  - VD: `[0, 1, 2, 5]` nghĩa là đi qua 0 → 1 → 2 → 5
-- **`inSeq[]`**: đánh dấu nhanh điểm đã chọn (để không chọn lại)
-  - VD: `inSeq[1] = true` nghĩa là điểm 1 đã được chọn
-  - Tra cứu O(1) thay vì duyệt `seq[]` O(n)
-
-### Q7: Tự chèn điểm giữa có thể tắt được không?
-
-**A:** Có thể, chỉ cần comment hoặc xóa đoạn này trong `processPoint()`:
-
-```cpp
-if (seqLen > 0) {
-    int mid = middleDot(seq[seqLen - 1], (uint8_t)idx);
-    if (mid >= 0 && !inSeq[mid]) {
-        addDot((uint8_t)mid);   // ← comment dòng này
-    }
-}
-```
-
-Khi đó, kéo 0 → 2 sẽ chỉ nối thẳng 0→2, không tự chèn điểm 1.
-
----
-
-## 🛠️ Công nghệ sử dụng
+## Công nghệ sử dụng
 
 - **TouchGFX Framework**: thư viện GUI cho STM32
 - **Circle, Line Widget**: đối tượng vẽ hình tròn và đường thẳng
@@ -920,7 +848,7 @@ Khi đó, kéo 0 → 2 sẽ chỉ nối thẳng 0→2, không tự chèn điểm
 
 ---
 
-## 📚 Tham chiếu
+## Tham chiếu
 
 - **File header**: `TouchGFX\gui\include\gui\screen1_screen\Screen1View.hpp`
 - **File implementation**: `TouchGFX\gui\src\screen1_screen\Screen1View.cpp`
@@ -931,7 +859,7 @@ Khi đó, kéo 0 → 2 sẽ chỉ nối thẳng 0→2, không tự chèn điểm
 
 ---
 
-## 📝 Ghi chú kỹ thuật
+## Ghi chú kỹ thuật
 
 1. **Thread-safe**: code chạy trên 1 thread (GUI task), không cần mutex
 2. **Memory**: pattern tối đa 9 điểm × 1 byte = 9 bytes
