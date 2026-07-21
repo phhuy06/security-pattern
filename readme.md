@@ -33,13 +33,13 @@ Xây dựng chức năng mở khóa bằng pattern giống điện thoại trên
 
 ## 2. TÁC GIẢ
 
-| STT | Họ và tên | Mã số sinh viên |
-|:---:|:----------|:----------------|
-| 1 | Phạm Quang Huy | 20225338 |
-| 2 | Trương Huy Khuê | 20225348 |
-| 3 | Tạ Minh Hiếu | 20225317 |
-| 4 | Hoàng Thành Long | 20225207 |
-| 5 | Nguyễn Cảnh Huy | 20225334 |
+| STT | Họ và tên | Mã số sinh viên | Mảng | Nhiệm vụ |
+|:---:|:----------|:----------------|:-----|:---------|
+| 1 | Phạm Quang Huy | 20225338 | Lập trình | Driver lưu trữ Flash `pattern_storage.c` (sector 23, magic + CRC16); tổng hợp & viết báo cáo |
+| 2 | Hoàng Thành Long | 20225207 | Lập trình | `Model` & nút BOOT: poll PA0 (giữ 3s), nạp/verify/save pattern, cầu nối Presenter |
+| 3 | Tạ Minh Hiếu | 20225317 | Lập trình | `Screen1View`: cảm ứng, hit-test 9 điểm, tự chèn điểm giữa, máy trạng thái, vẽ đường nối, timer, phản hồi màu |
+| 4 | Trương Huy Khuê | 20225348 | Giao diện & Kiểm thử | Giao diện TouchGFX + font tiếng Việt (`texts.xml`); kiểm thử trên kit; quay video & chụp ảnh _(cùng Cảnh Huy)_ |
+| 5 | Nguyễn Cảnh Huy | 20225334 | Giao diện & Kiểm thử | Giao diện TouchGFX + font tiếng Việt (`texts.xml`); kiểm thử trên kit; quay video & chụp ảnh _(cùng Khuê)_ |
 
 ---
 
