@@ -23,6 +23,7 @@ protected:
     enum AppState
     {
         ST_LOCKED,             /* khóa, chờ nhập pattern mở khóa            */
+		ST_VERIFY_OLD,		   /* xác thực pattern cũ trước khi đổi mật khẩu */
         ST_REGISTER_FIRST,     /* đăng ký: vẽ pattern mới                   */
         ST_REGISTER_CONFIRM,   /* đăng ký: vẽ lại để xác nhận               */
         ST_UNLOCKED            /* mở khóa thành công, đang hiện thông báo   */
@@ -47,6 +48,7 @@ protected:
 
     AppState state;
     Pending  pending;
+    bool isChangingPassword; /* cờ phân biệt luồng đổi mật khẩu */
     int      autoTimer;        /* số tick còn lại trước khi chạy pending    */
     int      lockoutTickCounter;
 

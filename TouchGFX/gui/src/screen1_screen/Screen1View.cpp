@@ -305,7 +305,23 @@ void Screen1View::finishSequence()
             autoTimer = ERROR_TICKS;
         }
         break;
-
+    case ST_VERIFY_OLD:
+            if (seqLen >= MIN_LEN && presenter->verifyPattern(seq, seqLen))
+            {
+                colorWholePattern(cSuccess());
+                setStatus("Xac thuc OK");
+                state = ST_REGISTER_FIRST;
+                pending = P_REG_AGAIN;
+                autoTimer = SHOW_FIRST_TICKS;
+            }
+            else
+            {
+                colorWholePattern(cError());
+                setStatus("Sai pattern cu");
+                pending = P_LOCK;
+                autoTimer = ERROR_TICKS;
+            }
+            break;
     default:
         break;
     }
@@ -366,16 +382,26 @@ void Screen1View::doSave()
 
 void Screen1View::startRegistration()
 {
-    if (state == ST_REGISTER_FIRST || state == ST_REGISTER_CONFIRM)
+    if (state == ST_VERIFY_OLD || state == ST_REGISTER_FIRST || state == ST_REGISTER_CONFIRM)
     {
-        return;   /* đang đăng ký rồi */
+        return;   /* đang trong quá trình xác thực hoặc đăng ký rồi */
     }
     clearDrawing();
     dragging = false;
-    state = ST_REGISTER_FIRST;
     pending = P_NONE;
     autoTimer = 0;
-    setStatus("Ve pattern moi");
+    // Nếu đã có pattern, yêu cầu nhập pattern cũ trước
+    if (presenter->patternSet())
+    {
+        state = ST_VERIFY_OLD;
+        setStatus("Ve pattern cu");
+    }
+    else
+    {
+        // Nếu là lần đầu tiên, cho phép vẽ luôn pattern mới
+        state = ST_REGISTER_FIRST;
+        setStatus("Ve pattern moi");
+    }
 }
 
 void Screen1View::resetToLocked()
