@@ -37,6 +37,21 @@ public:
         Model::NotifyType getNotifyType() const    { return model->getNotifyType(); }
     virtual ~Screen1Presenter() {}
 
+    bool isLockedOut() const {
+    	return model->isLockedOut();
+    }
+    uint32_t getRemainingLockoutSeconds() const {
+    	return model->getRemainingLockoutSeconds();
+    }
+    void incrementFailCount() {
+    	model->incrementFailCount();
+    }
+    void resetFailCount() {
+    	model->resetFailCount();
+    }
+    uint8_t getFailCount() const {
+    	return model->getFailCount();
+    }
 private:
     Screen1Presenter();
 

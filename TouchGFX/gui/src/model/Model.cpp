@@ -14,6 +14,8 @@ extern "C"
 Model::Model()
     : modelListener(0),
 	  currentNotify(NOTIFY_NONE),
+	  failCount(0),
+	  lockoutEndTime(0),
       storedLen(0),
       patternSet(false),
       buttonWasDown(false),
@@ -81,4 +83,38 @@ bool Model::savePattern(const uint8_t* dots, uint8_t len)
     storedLen = len;
     patternSet = true;
     return true;
+}
+void Model::incrementFailCount()
+{
+    failCount++;
+    if (failCount >= 5) // Sai từ lần thứ 5 trở lên
+    {
+        // Khóa trong 30 giây
+        lockoutEndTime = HAL_GetTick() + 30000u;
+    }
+}
+
+void Model::resetFailCount()
+{
+    failCount = 0;
+    lockoutEndTime = 0;
+}
+
+bool Model::isLockedOut() const
+{
+    if (lockoutEndTime == 0) return false;
+
+    // Kiểm tra xem thời gian hiện tại đã quá thời gian khóa chưa
+    if (HAL_GetTick() < lockoutEndTime)
+    {
+        return true;
+    }
+    return false;
+}
+
+uint32_t Model::getRemainingLockoutSeconds() const
+{
+    if (!isLockedOut()) return 0;
+    uint32_t remainingMs = lockoutEndTime - HAL_GetTick();
+    return (remainingMs / 1000) + 1;
 }

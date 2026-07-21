@@ -28,6 +28,7 @@ inline colortype cIdle()    { return Color::getColorFromRGB(255, 255, 255); }
 
 Screen1View::Screen1View()
     : state(ST_LOCKED), pending(P_NONE), autoTimer(0),
+	  lockoutTickCounter(0),
       seqLen(0), dragging(false), firstRegLen(0)
 {
     for (int i = 0; i < 9; i++)
@@ -74,6 +75,10 @@ void Screen1View::tearDownScreen()
 
 void Screen1View::handleClickEvent(const ClickEvent& evt)
 {
+	if (presenter->isLockedOut())
+	    {
+	        return;   /* hệ thống đang bị khóa tạm thời */
+	    }
     if (autoTimer > 0)
     {
         return;   /* đang hiện thông báo -> chặn nhập */
@@ -110,6 +115,29 @@ void Screen1View::handleDragEvent(const DragEvent& evt)
 
 void Screen1View::handleTickEvent()
 {
+	if (presenter->isLockedOut())
+	    {
+	        lockoutTickCounter++;
+	        if (lockoutTickCounter >= 60) // Cứ mỗi 1 giây
+	        {
+	            lockoutTickCounter = 0;
+	            int secs = presenter->getRemainingLockoutSeconds();
+
+	            // In thời gian đếm ngược lên status text
+	            Unicode::snprintf(txtStatusBuffer, TXTSTATUS_SIZE, "Khoa %d s", secs);
+	            txtStatus.invalidate();
+	            txtStatus.resizeToCurrentText();
+	            txtStatus.setX((int16_t)(120 - txtStatus.getWidth() / 2));
+	            txtStatus.invalidate();
+	        }
+
+	        // Chặn vẽ khi đang bị khóa
+	        if (state == ST_LOCKED && seqLen > 0)
+	        {
+	            clearDrawing();
+	        }
+	        return;
+	    }
     if (autoTimer > 0)
     {
         autoTimer--;
@@ -120,7 +148,7 @@ void Screen1View::handleTickEvent()
     }
 }
 
-/* ------------------------------------------------------------- vẽ pattern */
+/*vẽ pattern */
 
 void Screen1View::beginSequence(int16_t x, int16_t y)
 {
@@ -212,23 +240,34 @@ void Screen1View::finishSequence()
     switch (state)
     {
     case ST_LOCKED:
-        if (seqLen >= MIN_LEN && presenter->verifyPattern(seq, seqLen))
-        {
-            colorWholePattern(cSuccess());
-            setStatus("Mo khoa OK");
-            presenter->setNotifyType(Model::NOTIFY_UNLOCK_OK);
-            state = ST_UNLOCKED;
-            pending = P_GOTO_SCREEN2;
-            autoTimer = 60;
-        }
-        else
-        {
-            colorWholePattern(cError());
-            setStatus("Sai, thu lai");
-            pending = P_LOCK;
-            autoTimer = ERROR_TICKS;
-        }
-        break;
+            if (seqLen >= MIN_LEN && presenter->verifyPattern(seq, seqLen))
+            {
+                colorWholePattern(cSuccess());
+                setStatus("Mo khoa OK");
+                presenter->resetFailCount();// ĐÚNG -> Reset  0
+                presenter->setNotifyType(Model::NOTIFY_UNLOCK_OK);
+                state = ST_UNLOCKED;
+                pending = P_GOTO_SCREEN2;
+                autoTimer = 60;
+            }
+            else
+            {
+                colorWholePattern(cError());
+                // SAI -> Tăng số lần sai lên 1
+                presenter->incrementFailCount();
+                if (presenter->isLockedOut())
+                {
+                    setStatus("Khoa 30 s");
+                }
+                else
+                {
+                	setStatus("Sai, thu lai");
+                }
+
+                pending = P_LOCK;
+                autoTimer = ERROR_TICKS;
+            }
+            break;
 
     case ST_REGISTER_FIRST:
         if (seqLen < MIN_LEN)
@@ -272,7 +311,7 @@ void Screen1View::finishSequence()
     }
 }
 
-/* --------------------------------------------------- trạng thái / hiển thị */
+/*  trạng thái / hiển thị */
 
 void Screen1View::runPending()
 {

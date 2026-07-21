@@ -48,6 +48,7 @@ protected:
     AppState state;
     Pending  pending;
     int      autoTimer;        /* số tick còn lại trước khi chạy pending    */
+    int      lockoutTickCounter;
 
     uint8_t seq[9];            /* chuỗi điểm đang vẽ                        */
     uint8_t seqLen;

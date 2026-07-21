@@ -34,10 +34,18 @@ public:
 
     /* Ghi pattern mới vào Flash (vĩnh viễn) và cập nhật bản RAM. */
     bool savePattern(const uint8_t* dots, uint8_t len);
+    void incrementFailCount();
+    void resetFailCount();
+    uint8_t getFailCount() const { return failCount; }
+
+    bool isLockedOut() const;
+    uint32_t getRemainingLockoutSeconds() const;
 
 protected:
     ModelListener* modelListener;
     NotifyType currentNotify;
+    uint8_t failCount;
+    uint32_t lockoutEndTime;
 
 private:
     /* Pattern đã lưu (bản RAM). */
