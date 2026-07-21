@@ -39,11 +39,8 @@
 
 #ifndef configSYSTICK_CLOCK_HZ
 	#define configSYSTICK_CLOCK_HZ configCPU_CLOCK_HZ
-	/* Ensure the SysTick is clocked at the same frequency as the core. */
 	#define portNVIC_SYSTICK_CLK_BIT	( 1UL << 2UL )
 #else
-	/* The way the SysTick is clocked is not modified in case it is not the same
-	as the core. */
 	#define portNVIC_SYSTICK_CLK_BIT	( 0 )
 #endif
 
@@ -358,7 +355,6 @@ BaseType_t xPortStartScheduler( void )
 	}
 	#endif /* conifgASSERT_DEFINED */
 
-	/* Make PendSV and SysTick the lowest priority interrupts. */
 	portNVIC_SYSPRI2_REG |= portNVIC_PENDSV_PRI;
 	portNVIC_SYSPRI2_REG |= portNVIC_SYSTICK_PRI;
 
@@ -394,8 +390,6 @@ BaseType_t xPortStartScheduler( void )
 
 void vPortEndScheduler( void )
 {
-	/* Not implemented in ports where there is nothing to return to.
-	Artificially force an assert. */
 	configASSERT( uxCriticalNesting == 1000UL );
 }
 /*-----------------------------------------------------------*/

@@ -29,7 +29,6 @@
 #include "task.h"
 #include "croutine.h"
 
-/* Remove the whole file is co-routines are not being used. */
 #if( configUSE_CO_ROUTINES != 0 )
 
 /*
@@ -54,7 +53,6 @@ CRCB_t * pxCurrentCoRoutine = NULL;
 static UBaseType_t uxTopCoRoutineReadyPriority = 0;
 static TickType_t xCoRoutineTickCount = 0, xLastTickCount = 0, xPassedTicks = 0;
 
-/* The initial state of the co-routine when it is created. */
 #define corINITIAL_STATE	( 0 )
 
 /*
